@@ -1,5 +1,7 @@
 name: Snyk OSS Scan
 
+
+
 on:
   push:
     branches:

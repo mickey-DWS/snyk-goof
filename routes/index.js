@@ -25,6 +25,9 @@ exports.index = function (req, res, next) {
     exec(function (err, todos) {
       if (err) return next(err);
 
+  
+      
+      
       res.render('index', {
         title: 'Goof TODO',
         subhead: 'Vulnerabilities at their best',
