@@ -28,10 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Authenticate with Snyk
+      - name: Run Snyk Code and OSS to check for vulnerabilities
         env: 
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      - name: Run Snyk Code and OSS to check for vulnerabilities
         run: |
           snyk code test --severity-threshold=high
           snyk test --severity-threshold=critical --fail-on=upgradable
