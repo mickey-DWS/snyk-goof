@@ -2,6 +2,10 @@
  * Module dependencies.
  */
 
+
+const location = process.env.PGO_LOCATION || "times squere";
+const username = process.env.PGO_USERNAME || "root";
+const password = process.env.PGO_PASSWORD || "password";
 const snyk = require('@snyk/nodejs-runtime-agent')
 snyk({
   projectId: process.env.SNYK_PROJECT_ID,
@@ -13,7 +17,7 @@ require('./db');
 var st = require('st');
 var crypto = require('crypto');
 var express = require('express');
-var http = require('http');
+var https = require('https');
 var path = require('path');
 var ejsEngine = require('ejs-locals');
 var cookieParser = require('cookie-parser');
@@ -29,6 +33,8 @@ var dustHelpers = require('dustjs-helpers');
 var cons = require('consolidate');
 
 var app = express();
+app.disable('x-powered-by');
+app.use(express.csrf());
 var routes = require('./routes');
 
 // all environments
@@ -71,9 +77,9 @@ if (app.get('env') == 'development') {
   app.use(errorHandler());
 }
 
-var token = 'SECRET_TOKEN_f8ed84e8f41e4146403dd4a6bbcea5e418d23a9';
+var token = 'SECRET_TOKEN_f8ed84e8f41e4146403dd4a6bbcea5e418d';
 console.log('token: ' + token);
 
-http.createServer(app).listen(app.get('port'), function () {
+https.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });

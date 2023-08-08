@@ -22,7 +22,9 @@ module.exports = {
     res.statusCode = 403;
 
     res.setHeader( 'Content-Type', 'text/plain' );
-    res.setHeader( 'Content-Length', body.length );
+    res.statusCode = 403;
+    res.setHeader( 'Content-Type', 'text/plain');
+    res.send( body );
     res.end( body );
   }
 };
