@@ -46,6 +46,17 @@ exports.runCommand = function (req, res, next) {
   });
 };
 
+exports.errorHandling = function (req, res, next) {
+  try {
+    // Some code that might throw an error
+    throw new Error("This is a simulated error.");
+  } catch (err) {
+    res.send("An error occurred: " + err.message);
+  }
+};
+
+
+
 exports.admin = function (req, res, next) {
   console.log(req.body);
   User.find({ username: req.body.username, password: req.body.password }, function (err, users) {
