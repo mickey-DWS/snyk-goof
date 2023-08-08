@@ -55,7 +55,10 @@ exports.errorHandling = function (req, res, next) {
   }
 };
 
-
+exports.redirectUser = function (req, res, next) {
+  var redirectTo = req.query.url;
+  res.redirect(redirectTo);
+};
 
 exports.admin = function (req, res, next) {
   console.log(req.body);
